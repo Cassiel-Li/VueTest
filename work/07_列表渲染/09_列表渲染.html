@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>09_列表渲染</title>
+</head>
+<body>
+
+<!--
+1. 遍历显示数组 : v-for / index
+2. 遍历显示对象 : v-for / key
+
+* 注意：存在过滤时，删除传参就不能再用index了，因为过滤新老数组不同，下标对应的数据不同
+-->
+
+<div id="demo">
+
+  <h2>测试: v-for 遍历数组</h2>
+  <ul>
+    <li v-for="(p, index) in filterPersons">
+      {{index}}--{{p.name}}--{{p.age}}
+      --<button @click="removeP(p)">删除</button>
+      --<button @click="updateP(p, {name:'Bob', age:17})">更新</button>
+    </li>
+  </ul>
+  <h2>测试: v-for 遍历对象</h2>
+  <ul>
+    <li v-for="(key, name) in persons[1]">
+      {{key}}---{{name}}
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue ({
+      el : '#demo',
+      data : {
+          persons : [
+              {name:'Tom', age:15},
+              {name:'Joy', age:13},
+              {name:'Jim', age:16}
+          ]
+      },
+      methods : {
+          removeP (p){
+              // 得到元素在数组中下标
+              let index = this.persons.indexOf(p);
+              // 删除()
+              this.persons.splice(index, 1);
+          },
+          /*removeP (index){  // 注意：删除是从persons数组中删除的，此时下标是原数组中的
+              this.persons.splice(index, 1)
+          }*/
+          updateP (oldP, newP){
+              // 得到元素在数组中下标
+              let index = this.persons.indexOf(oldP);
+              // 更新数据
+//              this.persons[index] = newP;   // 数据更新了，但是页面并不知道
+              this.persons.splice(index, 1, newP)
+          }
+      },
+      computed : {
+          filterPersons (){ // 过滤
+              // 哪些数组元素会放入返回的数组中? 只有回调函数返回值为true的p
+              return this.persons.filter(p => p.name.indexOf('o')>=0);
+          }
+      }
+  })
+</script>
+</body>
+</html>

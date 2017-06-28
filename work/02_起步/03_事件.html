@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>03_事件</title>
+</head>
+<body>
+<!--
+  1. 绑定监听的指令:
+    v-on:xxx="函数名或函数调用"
+    @xxx="函数名或函数调用"
+  2. 定义事件处理的函数:
+    methods : {
+      函数名 : function(){...}
+    }
+-->
+
+  <div id="test">
+    <!--<p>上海自来水</p>-->
+    <p>{{msg}}</p>
+    <button v-on:click="reverse">反转</button>
+  </div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+      el : '#test',
+      data : {
+          msg : '上海自来水'
+      },
+      methods : {
+          /*reverse : function(){
+              this.msg = this.msg.split('').reverse().join('');
+          }*/
+          reverse (){   // 简写方式，思考：this是谁？
+              this.msg = this.msg.split('').reverse().join('');
+          }
+      }
+  })
+</script>
+
+<!--<div id="test">
+  <input type="text" v-model="msg">
+  <p>{{msg}}</p>
+  <button v-on:click="reverse">反转</button>
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue ({    // vm实例
+      el : '#test',
+      data : {
+          msg : '蜜蜂蜂蜜。'
+      },
+      methods : {
+          reverse(){
+              this.msg = this.msg.split('').reverse().join('');
+          }
+      }
+  })
+</script>-->
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!--
+1. 使用v-model对表单项数据双向绑定
+  text/textarea
+  checkbox : 绑定boolean/string值
+  radio
+  select
+2. 失去焦点才更新: .lazy
+    v-model.lazy
+3. 自动去除两端空格: .trim
+    v-model.trim
+-->
+<div id="demo">
+  <input type="text" v-model="msg"><br>
+  <textarea cols="30" rows="10" v-model="msg"></textarea>
+  <p>{{msg}}</p>
+  <hr />
+
+  <input type="checkbox" v-model="ok">{{ok}}<br>
+  <input type="checkbox" name="students" value="Jack" v-model="selectStudents">Jack
+  <input type="checkbox" name="students" value="Bob" v-model="selectStudents">bob
+  <input type="checkbox" name="students" value="Jodan" v-model="selectStudents">Jodan
+  <br>checkName:{{selectStudents}}
+
+  <hr>
+  <input type="radio" name="sex" value="male" v-model="sex">男
+  <input type="radio" name="sex" value="female" v-model="sex">女
+  {{sex}}
+
+  <hr>
+  <select name="cities" v-model="selecctCity">
+    <option :value="city.id" v-for="city in cities" >{{city.name}}</option>
+  </select>
+  {{selecctCity}}
+
+  <hr>
+  <input type="text" placeholder="失去焦点才更新" v-model.lazy="msg2">{{msg2}}
+  <br>
+  <input type="text" placeholder="自动trim" v-model.trim="msg3">---{{msg3}}---
+  <hr>
+
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+      el : '#demo',
+      data : {
+          msg : 'atguigu.com',
+          ok : true,
+          selectStudents : ['jack'],
+//          sex : 'female'
+          sex : '',
+          cities : [
+              {id:1, name:'BJ'},
+              {id:3, name:'SH'},
+              {id:5, name:'SZ'}
+          ],
+          selecctCity : '',
+          msg2 : '',
+          msg3 : ''
+      }
+  })
+
+</script>
+</body>
+</html>

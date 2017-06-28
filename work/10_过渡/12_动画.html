@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>15_动画</title>
+</head>
+<body>
+
+  <div id="demo">
+    <transition name="fade">
+      <button >切换</button>
+      <p v-show="ok">Hello</p>
+      <div v-show="ok" style="background: green; width: 200px; height: 200px"></div>
+    </transition>
+  </div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+      el : '#demo',
+      data : {
+          ok : false
+      }
+  })
+</script>
+</body>
+</html>
